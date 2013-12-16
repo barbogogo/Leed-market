@@ -4,8 +4,8 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 3.4.0
-@description Le plugin Social permet de partager les news avec son réseau social préféré (Twitter, Google+, Facebook, Delicious, Shaarli, Pocket, Instapaper, Mail, LinkedIn)
+@version 3.5.0
+@description Le plugin Social permet de partager les news avec son réseau social préféré (Twitter, Google+, Facebook, Delicious, Shaarli, Pocket, Instapaper, Mail, LinkedIn, Poche)
 */
 
 function social_plugin_AddButton(&$event){
@@ -33,6 +33,7 @@ function social_plugin_AddButton(&$event){
             '.($configurationManager->get('plugin_social_instapaper')?'<div onclick="openURL(\'http://www.instapaper.com/text?u='.rawurlencode($link).'\');" class="social_div">Instapaper</div>':'').'
             '.($configurationManager->get('plugin_social_mail')?'<div onclick="openURL(\'mailto:?subject='.rawurlencode($title).'&body='.rawurlencode($link).'\');" class="social_div">E-mail</div>':'').'
             '.($configurationManager->get('plugin_social_linkedin')?'<div onclick="openURL(\'http://www.linkedin.com/shareArticle?url='.rawurlencode($link).'&title='.rawurlencode($title).'\');" class="social_div">LinkedIn</div>':'').'
+            '.($configurationManager->get('plugin_social_poche')?'<div onclick="openURL(\''.$configurationManager->get('plugin_social_poche_link').'?action=add&url='.base64_encode($link).'\');" class="social_div">Poche</div>':'').'
         </div>';
 }
 
@@ -105,6 +106,21 @@ function social_plugin_setting_bloc(&$myUser){
 		<input style="width:50%;" type="text" placeholder="http://mon.domaine.com/shaarli/" value="'.$configurationManager->get('plugin_social_shaarli_link').'" id="plugin_social_shaarli_link" name="plugin_social_shaarli_link" />
 		</p>
 		</section>
+
+		<section class="preferenceBloc">
+		<h3>Paramétrages Application Poche</h3>
+		<h4>Application auto-hébergeable pour lire les articles plus tard (<a href="http://www.inthepoche.com/">site web</a>)</h4>
+		<p>
+		<label for="social_poche">Partage sur Poche :</label>
+		<input type="radio" '.($configurationManager->get('plugin_social_poche')?'checked="checked"':'').' value=1 id="socialPocheYes" name="socialPoche"><label>Oui</label>
+		<input type="radio" '.($configurationManager->get('plugin_social_poche')?'':'checked="checked"').' value=0 id="socialPocheNo" name="socialPoche"><label>Non</label>
+		</p>
+		<p>
+		<label for="social_poche_link">Lien vers votre poche :</label>
+		<input style="width:50%;" type="text" placeholder="http://mon.domaine.com/poche/" value="'.$configurationManager->get('plugin_social_poche_link').'" id="plugin_social_poche_link" name="plugin_social_poche_link" />
+		</p>
+		</section>
+
 		<input type="submit" class="button" value="Enregistrer"><br/>
 		<p>
 		@Cobalt74 : Si vous souhaitez que j\'intègre de nouveau lien de partage vers des applications, je reste disponible sur le <a href=https://github.com/ldleman/Leed-market/>GitHub du projet</a>
@@ -129,6 +145,8 @@ function social_plugin_update($_){
 		$configurationManager->put('plugin_social_instapaper',$_['socialInstapaper']);
 		$configurationManager->put('plugin_social_mail',$_['socialMail']);
         $configurationManager->put('plugin_social_linkedin',$_['socialLinkedIn']);
+		$configurationManager->put('plugin_social_poche',$_['socialPoche']);
+		$configurationManager->put('plugin_social_poche_link', $_['plugin_social_poche_link']);
 		$_SESSION['configuration'] = null;
 
 		header('location: settings.php#socialBloc');
