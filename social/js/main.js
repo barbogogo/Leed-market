@@ -3,8 +3,9 @@ function openURL(url){
    return false;
 }
 
-function social_toggle_div(maindiv, id) {
+function social_toggle_div(main, id) {
   var div = document.getElementById(id);
+  var maindiv = document.getElementById(main);
   
   if(div.style.display=="none") {
 	div.style.left=maindiv.parentNode.offsetLeft+3+'px';

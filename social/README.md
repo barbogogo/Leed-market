@@ -14,6 +14,7 @@ Voici pour l'instant la liste des réseaux et applications disponibles.
 - Instapaper
 - E-mail
 - Linkedin
+- Poche
 
 Je reste à dispo sur le GitHub du projet si vous souhaitez ajouter un réseau social connu ou une application libre intéressante.
 
@@ -27,6 +28,8 @@ Instructions
 Version
 =======
 
+* v3.5.1  -  Fermeture du menu sur la selection d'un lien de partage
+* v3.5.0  -  Ajout partage sur Poche
 * v3.4.0  -  Ajout partage sur Linkedin
 * v3.3.0  -  Ajout partage par E-mail
 * v3.2.1  -  Correction Typo sur Twitter
