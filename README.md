@@ -26,6 +26,7 @@ wiki plugins : http://projet.idleman.fr/leed/?page=Plugins
 * leedUpdateSource	- Leed toujours à jour.
 * oneSync			- Ajoute un bouton à coté de chaque flux afin de synchroniser uniquement ce flux.
 * rssmaker          - Créer un flux rss par dossiers de flux. Permet de créer de nouveaux flux pour une consultation plus synthétique.
+* scrollRead        - Le plugin permet lors de la lecture d'un article de le mettre automatiquement à lu lors du scoll vers l'article suivant
 * search			- Effectuer une recherche sur les articles de Leed. Ne perdez plus aucune information !
 * shaarleed			- Partage un lien d’événement directement sur son script shaarli.
 * social			- Partage les articles avec son réseau social préféré (Facebook / Tweeter / Google+).
