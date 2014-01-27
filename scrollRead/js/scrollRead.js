@@ -98,23 +98,15 @@ function scrollRead(){
     // on arrête la fonction lorsqu'on fait le changement d'article
     if ($(window).data('plugin_scroll_read') == false) return;
 
-    posEventSelected = $('.eventSelected').findPos();
-    heightEventSelected = $('.eventSelected').height();
-    pos_next_article = heightEventSelected + posEventSelected.y;
+    var posEventSelected = $('.eventSelected').findPos();
 
-    //console.info('posEventSelected.y : ' + posEventSelected.y);
-    //console.info('pos_next_article : '+ pos_next_article);
+    /*
+    console.info('posEventSelected.y : ' + posEventSelected.y);
     console.info('windows ScrollTop : '+ $(window).scrollTop());
     console.info('height:'+$(document).height());
-    console.info('bas:'+ ($(window).scrollTop() + $(window).height()));
+    */
 
-    if ($(window).data('ajaxready') == false
-            && $(window).scrollTop()<50
-            && $('article #loader').style == 'display: none;') return;
-    var deviceAgent = navigator.userAgent.toLowerCase();
-    var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
-    if(($(window).scrollTop() + $(window).height())  == $(document).height()
-        || agentID && ($(window).scrollTop() + $(window).height()) + 150 > $(document).height())
+    if ($('article #loader').hasClass('finScroll'))
     {
         $('article section').last().height ($(window).height());
     }
@@ -126,10 +118,9 @@ function scrollRead(){
 
         /*
         console.info('posEventSelected.y : ' + posEventSelected.y);
-        console.info('pos_next_article : '+ pos_next_article);
-        console.info('windows ScrollTop : '+$(window).scrollTop());
+        console.info('windows ScrollTop : '+ $(window).scrollTop());
         console.info('height:'+$(document).height());
-         */
+        */
 
         // mettre à lu l'article et passer au suivant uniquement si il n'est pas déjà lu.
         var buttonElement = $('.eventSelected .readUnreadButton');
