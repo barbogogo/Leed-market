@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 1.0.0
+@version 1.0.1
 @description Permet d'avoir des petites statistiques sur les flux de votre environnement Leed.
 */
 
@@ -119,8 +119,11 @@ function short_name($str, $limit)
     }
 }
 
-
-        // Ajout de la fonction au Hook situé avant l'affichage des évenements
+// Ajout de la fonction au Hook situé avant l'affichage des évenements
+$myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
+if($myUser!=false) {
     Plugin::addHook('setting_post_link', 'leedStats_plugin_setting_link');
     Plugin::addHook('setting_post_section', 'leedStats_plugin_setting_bloc');
+}
+
 ?>

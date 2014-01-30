@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 1.0.0
+@version 1.0.1
 @description Ce plugin permet d'ajouter un menu surgissant afin d'accéder directement à des liens externes (blog, applications)
 */
 
@@ -94,8 +94,11 @@ function leedHomeLink_plugin_update($_){
 
 Plugin::addJs('/js/leedHomeLink.js');
 
-Plugin::addHook('setting_post_link', 'leedHomeLink_plugin_setting_link');  
-Plugin::addHook('setting_post_section', 'leedHomeLink_plugin_setting_bloc');  
-Plugin::addHook('action_post_case', 'leedHomeLink_plugin_update');
+$myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
+if($myUser!=false) {
+    Plugin::addHook('setting_post_link', 'leedHomeLink_plugin_setting_link');
+    Plugin::addHook('setting_post_section', 'leedHomeLink_plugin_setting_bloc');
+    Plugin::addHook('action_post_case', 'leedHomeLink_plugin_update');
+}
 Plugin::addHook('footer_post_copyright', 'leedHomeLink_plugin_homelink');
 ?>

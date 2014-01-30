@@ -13,4 +13,5 @@ Instructions
 Version
 =======
 
+* v1.0.1  - Sécurisation de l'administration
 * v1.0.0  - Développement Initial

@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 3.5.2
+@version 3.5.3
 @description Le plugin Social permet de partager les news avec son réseau social préféré (Twitter, Google+, Facebook, Delicious, Shaarli, Pocket, Instapaper, Mail, LinkedIn, Wallabag)
 */
 
@@ -17,7 +17,9 @@ function social_plugin_AddButton(&$event){
   $result = mysql_fetch_row($query);
   $link = $result[0];
   $title = $result[1];
-  
+
+  $myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
+
   $configurationManager = new Configuration();
   $configurationManager->getAll();
   echo '<div class="social_group">
@@ -28,12 +30,12 @@ function social_plugin_AddButton(&$event){
             '.($configurationManager->get('plugin_social_googleplus')?'<div onclick="openURL(\'https://plus.google.com/share?url='.rawurlencode($link).'&hl=fr\');social_toggle_div(\'maindiv'.$eventId.'\',\''.$eventId.'\');" class="social_div">Google+</div>':'').'
             '.($configurationManager->get('plugin_social_facebook')?'<div onclick="openURL(\'http://www.facebook.com/share.php?u='.rawurlencode($link).'\');social_toggle_div(\'maindiv'.$eventId.'\',\''.$eventId.'\');" class="social_div">Facebook</div>':'').'
             '.($configurationManager->get('plugin_social_delicious')?'<div onclick="openURL(\'http://del.icio.us/post?v=5&noui&jump=close&url='.rawurlencode($link).'&title='.rawurlencode($title).'\');social_toggle_div(\'maindiv'.$eventId.'\',\''.$eventId.'\');" class="social_div">Delicous</div>':'').'
-            '.($configurationManager->get('plugin_social_shaarli')?'<div onclick="openURL(\''.$configurationManager->get('plugin_social_shaarli_link').'?post='.rawurlencode($link).'&title='.rawurlencode($title).'&amp;source=bookmarklet\');social_toggle_div(\'maindiv'.$eventId.'\',\''.$eventId.'\');" class="social_div">Shaare</div>':'').'
+            '.($myUser!=false?($configurationManager->get('plugin_social_shaarli')?'<div onclick="openURL(\''.$configurationManager->get('plugin_social_shaarli_link').'?post='.rawurlencode($link).'&title='.rawurlencode($title).'&amp;source=bookmarklet\');social_toggle_div(\'maindiv'.$eventId.'\',\''.$eventId.'\');" class="social_div">Shaare</div>':''):'').'
             '.($configurationManager->get('plugin_social_pocket')?'<div onclick="openURL(\'https://getpocket.com/edit?url='.rawurlencode($link).'&title='.rawurlencode($title).'\');social_toggle_div(\'maindiv'.$eventId.'\',\''.$eventId.'\');" class="social_div">Pocket</div>':'').'
             '.($configurationManager->get('plugin_social_instapaper')?'<div onclick="openURL(\'http://www.instapaper.com/text?u='.rawurlencode($link).'\');social_toggle_div(\'maindiv'.$eventId.'\',\''.$eventId.'\');" class="social_div">Instapaper</div>':'').'
             '.($configurationManager->get('plugin_social_mail')?'<div onclick="openURL(\'mailto:?subject='.rawurlencode($title).'&body='.rawurlencode($link).'\');social_toggle_div(\'maindiv'.$eventId.'\',\''.$eventId.'\');" class="social_div">E-mail</div>':'').'
             '.($configurationManager->get('plugin_social_linkedin')?'<div onclick="openURL(\'http://www.linkedin.com/shareArticle?url='.rawurlencode($link).'&title='.rawurlencode($title).'\');social_toggle_div(\'maindiv'.$eventId.'\',\''.$eventId.'\');" class="social_div">LinkedIn</div>':'').'
-            '.($configurationManager->get('plugin_social_wallabag')?'<div onclick="openURL(\''.$configurationManager->get('plugin_social_wallabag_link').'?action=add&url='.base64_encode($link).'\');social_toggle_div(\'maindiv'.$eventId.'\',\''.$eventId.'\');" class="social_div">Wallabag</div>':'').'
+            '.($myUser!=false?($configurationManager->get('plugin_social_wallabag')?'<div onclick="openURL(\''.$configurationManager->get('plugin_social_wallabag_link').'?action=add&url='.base64_encode($link).'\');social_toggle_div(\'maindiv'.$eventId.'\',\''.$eventId.'\');" class="social_div">Wallabag</div>':''):'').'
         </div>';
 }
 
@@ -155,8 +157,13 @@ function social_plugin_update($_){
 
 // Ajout de la fonction au Hook situé avant l'affichage des évenements
 Plugin::addJs("/js/main.js");
-Plugin::addHook("event_post_top_options", "social_plugin_AddButton"); 
-Plugin::addHook('setting_post_link', 'social_plugin_setting_link');  
-Plugin::addHook('setting_post_section', 'social_plugin_setting_bloc');  
-Plugin::addHook("action_post_case", "social_plugin_update");  
+Plugin::addHook("event_post_top_options", "social_plugin_AddButton");
+
+$myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
+if($myUser!=false) {
+    Plugin::addHook('setting_post_link', 'social_plugin_setting_link');
+    Plugin::addHook('setting_post_section', 'social_plugin_setting_bloc');
+    Plugin::addHook("action_post_case", "social_plugin_update");
+}
+
 ?>

@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 3.0.2
+@version 3.0.3
 @description Pour être toujours à jour avec Leed et ces plugins. Ce plugin récupère le zip du projet GIT et le dezippe directement sur votre environnement
 */
 
@@ -293,19 +293,22 @@ function plugin_leedUpdateSource_message ($var) {
 	$configurationManager->getAll();
 	
 	// recherche du numéro de version et enregistrement pour pouvoir tester si une nouvelle version est sortie.
-	$tabRepo = explode('/', $configurationManager->get($var));
-	$branche = explode ('.',$tabRepo[6]);
-	$commit = plugin_leedUpdateSourceCheckVersion($tabRepo[3],$tabRepo[4],$branche[0] );
+    $result = '';
 
-	$result = '';
-	if ($configurationManager->get($var.'_commit')!=$commit) {
-		if  (substr($commit,0,3) != 'API') {
-			$result = '<div class="messageAlert">Une nouvelle version est disponible (<a href=https://github.com/'.$tabRepo[3].'/'.$tabRepo[4].'/commits/'.$branche[0].'>'.$tabRepo[3].'/'.$tabRepo[4].'/'.$branche[0].'</a>) </div>';
-		} else {
-			$result = '<div class="messageAlert">API GitHub non disponible, impossible de vérifier la dernière version<br/>'.$commit.'</div>';
-		}
-	}
-		
+    if ($configurationManager->get($var)!='')
+    {
+        $tabRepo = explode('/', $configurationManager->get($var));
+        $branche = explode ('.',$tabRepo[6]);
+        $commit = plugin_leedUpdateSourceCheckVersion($tabRepo[3],$tabRepo[4],$branche[0] );
+
+        if ($configurationManager->get($var.'_commit')!=$commit) {
+            if  (substr($commit,0,3) != 'API') {
+                $result = '<div class="messageAlert">Une nouvelle version est disponible (<a href=https://github.com/'.$tabRepo[3].'/'.$tabRepo[4].'/commits/'.$branche[0].'>'.$tabRepo[3].'/'.$tabRepo[4].'/'.$branche[0].'</a>) </div>';
+            } else {
+                $result = '<div class="messageAlert">API GitHub non disponible, impossible de vérifier la dernière version<br/>'.$commit.'</div>';
+            }
+        }
+    }
 	return $result;
 }
 

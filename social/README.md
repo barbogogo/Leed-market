@@ -14,7 +14,7 @@ Voici pour l'instant la liste des réseaux et applications disponibles.
 - Instapaper
 - E-mail
 - Linkedin
-- Poche
+- Wallabag
 
 Je reste à dispo sur le GitHub du projet si vous souhaitez ajouter un réseau social connu ou une application libre intéressante.
 
@@ -28,6 +28,8 @@ Instructions
 Version
 =======
 
+* v3.5.3  -  Sécurisation de l'administration
+* v3.5.2  -  Modification de Poche en Wallabag
 * v3.5.1  -  Fermeture du menu sur la selection d'un lien de partage
 * v3.5.0  -  Ajout partage sur Poche
 * v3.4.0  -  Ajout partage sur Linkedin
