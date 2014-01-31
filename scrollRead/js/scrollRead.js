@@ -75,7 +75,9 @@ readThis = function(element,id,from,callback) {
 }
 
 $(window).scroll(function(){
-    scrollRead();
+    if(!$('.settings').length){
+        scrollRead();
+    }
 });
 
 // récupérer la position d'un DOM
