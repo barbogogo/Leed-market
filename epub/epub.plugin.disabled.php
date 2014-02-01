@@ -5,7 +5,7 @@
 @link https://redmine.adorsaz.ch/projects/leed-market_
 @link git://adorsaz.ch/leed-market.git
 @licence LGPLv3
-@version 1.1.0
+@version 1.1.1
 @description Ce plugin permet de télécharger vos articles au format epub pour une lecture hors-ligne.
 */
 
@@ -48,9 +48,9 @@ define("EPUBBOOK_END",
 
 /* Menu pour télécharger les fichiers Epub en page d'accueil */
 // TODO L10N
-function epub_plugin_menu(&$myUser){
-	$configManager = new Configuration();
-	$configManager->getAll();
+function epub_plugin_menu(){
+    $configManager = new Configuration();
+    $configManager->getAll();
 
     if($configManager->get('epub_menu')){
         echo '<aside class="epubMenu clear">
@@ -77,15 +77,16 @@ function epub_plugin_menu(&$myUser){
 }
 
 /* Ajout du lien pour les configurations dans le menu "Gestion" */
-function epub_plugin_managelink(&$myUser){
+function epub_plugin_managelink(){
     echo '<li><a class="toggle" href="#epub">Plugin Epub</a></li>';
 }
 
 /* Préférences du plugin */
-function epub_plugin_settings(&$myUser){
-	$configManager = new Configuration();
-	$configManager->getAll();
+function epub_plugin_settings(){
+    $configManager = new Configuration();
+    $configManager->getAll();
     ?>
+
     <section id="epub" name="epub" class="epub">
         <form action="action.php?action=epub_plugin_update" method="POST" style="width:80%;">
             <h2>Préférences du plugin Epub</h2>
@@ -134,26 +135,29 @@ function epub_plugin_settings(&$myUser){
 }
 
 /* Mise à jour des options */
-function epub_plugin_update($_){
-	$configManager = new Configuration();
-	if($_['action']=='epub_plugin_update'){
-		$configManager->put('epub_version',$_['epub_version']);
-		$configManager->put('epub_menu',$_['epub_menu']==='on');
-		$configManager->put('epub_menu_unread',$_['epub_menu_unread']==='on');
-		$configManager->put('epub_menu_favorites',$_['epub_menu_favorites']==='on');
-		$_SESSION['configuration'] = null;
+function epub_plugin_update_settings(&$_){
+   $myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
+   if($myUser===false) exit('Vous devez vous connecter pour mettre à jour les options du plugin Epub.');
 
-		header('location: settings.php');
-	}
+   $configManager = new Configuration();
+   if($_['action']=='epub_plugin_update'){
+       $configManager->put('epub_version',$_['epub_version']);
+       $configManager->put('epub_menu',$_['epub_menu']==='on');
+       $configManager->put('epub_menu_unread',$_['epub_menu_unread']==='on');
+       $configManager->put('epub_menu_favorites',$_['epub_menu_favorites']==='on');
+       $_SESSION['configuration'] = null;
+       
+       header('location: settings.php#epub');
+   }
 }
 
 /* Création et envoi des fichiers Epub */
 // TODO L10N
-function epub_plugin_action($_,$myUser){
-    if($myUser==false){
-        exit('Vous devez vous connecter pour cette action.');
-    }
-    elseif(strpos($_['action'],'epub_unread')!==false || strpos($_['action'],'epub_favorites')!==false){
+function epub_plugin_download(&$_){
+    $myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
+    if($myUser===false) exit('Vous devez vous connecter pour télécharger les fichiers Epub.');
+
+    if(strpos($_['action'],'epub_unread')!==false || strpos($_['action'],'epub_favorites')!==false){
         $requete = 'SELECT title,creator,content,pubdate
                     FROM '.MYSQL_PREFIX.'event
                     WHERE ';
@@ -186,8 +190,8 @@ function epub_plugin_action($_,$myUser){
 
 /* Utilise le contenu des articles pour créer un livre epub */
 function create_epub($title, $qry_articles, $external_content){
-	$configManager = new Configuration();
-	$configManager->getAll();
+    $configManager = new Configuration();
+    $configManager->getAll();
 
     $nbArticles = mysql_num_rows($qry_articles); // TODO PHP 5.5.0, remove this function to use mysqli_stmt_num_rows or PDO
 
@@ -219,25 +223,31 @@ function create_epub($title, $qry_articles, $external_content){
         // Epub chapters (articles) creation
         $chapNb = 1;
         while($data=mysql_fetch_array($qry_articles)){
+            $title_article = html_entity_decode($data['title'], ENT_QUOTES, 'UTF-8');
+            $author_article = html_entity_decode($data['creator'], ENT_QUOTES, 'UTF-8');
+            
             $html_content = $epubbook_start
-                . '<h2 class="articleTitle">'.$data['title'].'</h2>'
-                . '<h3 class="articleDetails"> par '.$data['creator'].' le '.date("d/m/Y à H:i:s",$data['pubdate']).'</h3>'
+                . '<h2 class="articleTitle">'.$title_article.'</h2>'
+                . '<h3 class="articleDetails"> par '.$author_article.' le '.date("d/m/Y à H:i:s",$data['pubdate']).'</h3>'
                 . $data['content'].constant("EPUBBOOK_END");
+
+            $html_content = html_entity_decode($html_content, ENT_QUOTES, 'UTF-8');
             
             switch($external_content){
                 case "textonly":
                     // Replace img tags by their alt value if possible (PHPePub make it only for Epub::EXTERNAL_REF_REPLACE_IMAGES)
                     $html_content = preg_replace('/<\s*?img.*alt="(.*?)".*?>/', '[image: ${1}]', $html_content);
-                    $book->addChapter($data['title'], "Chapitre_".$chapNb.".html", $html_content, true, EPub::EXTERNAL_REF_IGNORE);
+                    $html_content = preg_replace('/<\s*?br.*(.*?)".*?>/', '[image: ${1}]', $html_content);
+                    $book->addChapter($title_article, "Chapitre_".$chapNb.".html", $html_content, true, EPub::EXTERNAL_REF_IGNORE);
                     break;
 
                 case "noimage":
-                    $book->addChapter($data['title'], "Chapitre_".$chapNb.".html", $html_content, true, EPub::EXTERNAL_REF_REPLACE_IMAGES);
+                    $book->addChapter($title_article, "Chapitre_".$chapNb.".html", $html_content, true, EPub::EXTERNAL_REF_REPLACE_IMAGES);
                     break;
 
                 case "full":
                 default:
-                    $book->addChapter($data['title'], "Chapitre_".$chapNb.".html", $html_content, true, EPub::EXTERNAL_REF_ADD);
+                    $book->addChapter($title_article, "Chapitre_".$chapNb.".html", $html_content, true, EPub::EXTERNAL_REF_ADD);
                     break;
             }
 
@@ -254,14 +264,17 @@ function create_epub($title, $qry_articles, $external_content){
     }
 }
 
-// Ajout de la fonction epub_plugin_displayEvents au Hook situé après le menu des flux
-Plugin::addHook("menu_post_folder_menu", "epub_plugin_menu");
-// Ajout de la fonction epub_plugin_action à la page action de leed qui contient tous les traitements qui n'ont pas besoin d'affichage (ex :supprimer un flux, faire un appel ajax etc...)
-Plugin::addHook("action_post_case", "epub_plugin_action");
-// Ajout de la fonction epub_update pour mettre à jour les options
-Plugin::addHook("action_post_case", "epub_plugin_update");
-// Ajout du lien dans le menu "Gestion"
-Plugin::addHook("setting_post_link", "epub_plugin_managelink");
-// Page du menu "Gestion"
-Plugin::addHook("setting_post_section", "epub_plugin_settings");
+$myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
+if($myUser!==false){
+    // Ajout de la fonction epub_plugin_displayEvents au Hook situé après le menu des flux
+    Plugin::addHook("menu_post_folder_menu", "epub_plugin_menu");
+    // Ajout de la fonction epub_plugin_action à la page action de leed qui contient tous les traitements qui n'ont pas besoin d'affichage (ex :supprimer un flux, faire un appel ajax etc...)
+    Plugin::addHook("action_post_case", "epub_plugin_download");
+    // Ajout de la fonction epub_update pour mettre à jour les options
+    Plugin::addHook("action_post_case", "epub_plugin_update_settings");
+    // Ajout du lien dans le menu "Gestion"
+    Plugin::addHook("setting_post_link", "epub_plugin_managelink");
+    // Page du menu "Gestion"
+    Plugin::addHook("setting_post_section", "epub_plugin_settings");
+}
 ?>
