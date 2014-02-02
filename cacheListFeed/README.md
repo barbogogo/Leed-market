@@ -14,6 +14,7 @@ Instructions
 Version
 =======
 
+* v2.0.1  -  i18n + modif intégration sur Marigolds
 * v2.0.0  -  Enregistrement de la configuration caché / affiché
 * v1.1.0  -  Modification liée à la gestion des css sur Leed
 * v1.0.0  -  Développement Initial

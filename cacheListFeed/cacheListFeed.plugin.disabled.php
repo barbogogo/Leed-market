@@ -4,12 +4,12 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 2.0.0
+@version 2.1.0
 @description Le plugin cacheListFeed permet de cacher la liste des feed afin de lire les news en plein écran.
 */
 
 function cacheListFeed_plugin_AddButton(&$event){
-	echo '<div class="cacheListFeed_divbut" title="Cacher la liste des Feeds" onclick="cacheListFeed_toggle_div();">></div>';
+	echo '<div class="cacheListFeed_divbut" title="'._t('P_CACHELISTFEED_TITLE').'" onclick="cacheListFeed_toggle_div();">></div>';
 }
 
 function cacheListFeed_plugin_action (&$_) {
