@@ -9,7 +9,7 @@
 */
 
 function leedHomeLink_plugin_setting_link(&$myUser){
-	echo '<li><a class="toggle" href="#leedHomeLink">Plugin Leed Home Link</a></li>';
+	echo '<li><a class="toggle" href="#leedHomeLink">'._t('P_HOMELINK_TITLE').'</a></li>';
 }
 
 function leedHomeLink_plugin_homelink() {
@@ -35,37 +35,37 @@ function leedHomeLink_plugin_setting_bloc(&$myUser){
 	echo '
 	<section id="leedHomeLink" class="leedHomeLink" style="display:none;">
 		<form action="action.php?action=leedHomeLink_update" method="POST">
-		<h2>Plugin Leed Home Link</h2>
+		<h2>'._t('P_HOMELINK_TITLE').'</h2>
 
 		<section class="preferenceBloc">
-			<h3>Ajouter des liens à votre menu</h3>
+			<h3>'._t('P_HOMELINK_ADD_LINK_TITLE').'</h3>
 			<p>
-				<label for="leedHomeLink_1">Lien 1 :</label> 
+				<label for="leedHomeLink_1">'._t('P_HOMELINK_ADD_LINK').' 1 :</label>
 				<input style="width:50%;" type="text" placeholder="Blog" value="'.$configurationManager->get('plugin_leedHomeLink_1_name').'" id="plugin_leedHomeLink_1_name" name="plugin_leedHomeLink_1_name" />
 				<input style="width:60%;" type="text" placeholder="http://mon.domaine.com/blog/" value="'.$configurationManager->get('plugin_leedHomeLink_1_link').'" id="plugin_leedHomeLink_1_link" name="plugin_leedHomeLink_1_link" />
 			</p>
 			<p>
-				<label for="leedHomeLink_1">Lien 2 :</label> 
+				<label for="leedHomeLink_1">'._t('P_HOMELINK_ADD_LINK').' 2 :</label>
 				<input style="width:50%;" type="text" placeholder="Shaarli" value="'.$configurationManager->get('plugin_leedHomeLink_2_name').'" id="plugin_leedHomeLink_2_name" name="plugin_leedHomeLink_2_name" />
 				<input style="width:60%;" type="text" placeholder="http://mon.domaine.com/shaarli/" value="'.$configurationManager->get('plugin_leedHomeLink_2_link').'" id="plugin_leedHomeLink_2_link" name="plugin_leedHomeLink_2_link" />
 			</p>
 			<p>
-				<label for="leedHomeLink_1">Lien 3 :</label> 
+				<label for="leedHomeLink_1">'._t('P_HOMELINK_ADD_LINK').' 3 :</label>
 				<input style="width:50%;" type="text" value="'.$configurationManager->get('plugin_leedHomeLink_3_name').'" id="plugin_leedHomeLink_3_name" name="plugin_leedHomeLink_3_name" />
 				<input style="width:60%;" type="text" value="'.$configurationManager->get('plugin_leedHomeLink_3_link').'" id="plugin_leedHomeLink_3_link" name="plugin_leedHomeLink_3_link" />
 			</p>
 			<p>
-				<label for="leedHomeLink_1">Lien 4 :</label> 
+				<label for="leedHomeLink_1">'._t('P_HOMELINK_ADD_LINK').' 4 :</label>
 				<input style="width:50%;" type="text" value="'.$configurationManager->get('plugin_leedHomeLink_4_name').'" id="plugin_leedHomeLink_4_name" name="plugin_leedHomeLink_4_name" />
 				<input style="width:60%;" type="text" value="'.$configurationManager->get('plugin_leedHomeLink_4_link').'" id="plugin_leedHomeLink_4_link" name="plugin_leedHomeLink_4_link" />
 			</p>
 			<p>
-				<label for="leedHomeLink_1">Lien 5 :</label> 
+				<label for="leedHomeLink_1">'._t('P_HOMELINK_ADD_LINK').' 5 :</label>
 				<input style="width:50%;" type="text" value="'.$configurationManager->get('plugin_leedHomeLink_5_name').'" id="plugin_leedHomeLink_5_name" name="plugin_leedHomeLink_5_name" />
 				<input style="width:60%;" type="text" value="'.$configurationManager->get('plugin_leedHomeLink_5_link').'" id="plugin_leedHomeLink_5_link" name="plugin_leedHomeLink_5_link" />
 			</p>
 		</section>
-		<input type="submit" class="button" value="Enregistrer">
+		<input type="submit" class="button" value="'._t('P_HOMELINK_BTN_SAVE').'">
 		</form>
 	</section>
 	';
