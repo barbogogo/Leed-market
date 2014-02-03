@@ -33,7 +33,9 @@ wiki plugins : http://projet.idleman.fr/leed/?page=Plugins
 * shaarleed          - Partage un lien d’événement directement sur son script shaarli.
 * social             - Partage les articles avec son réseau social préféré (Facebook / Tweeter / Google+).
 * squelette          - Plugin d'exemple pour les créateurs de nouveaux plugins Leed.
+* title clean        - permet de nettoyer le titre d’un article et n’en conserver que le contenu textuel.
 * themeswitcher      - Changer de thème via la page de gestion.
+* urlclean           - permet de supprimer certains paramètres de tracking des liens des articles (xtor, utm_, …).
 * ToggleEventContent - Ajoute un bouton permettant de cacher/afficher le contenu d'un événement.
 * z_cssLeedMaker     - Ce plugin permet de construire son propre thème en ajoutant du css.
 
