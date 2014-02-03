@@ -38,6 +38,7 @@ readThis = function(element,id,from,callback) {
                             $('#nbarticle').html(parseInt($('#nbarticle').html()) - 1)
                             break;
                         case 'selectedFolder':
+                        case 'selectedFeedNonLu':
                             parent.addClass('eventRead');
                             if(callback){ callback(); }
                             // on compte combien d'article ont été lus afin de les soustraires de la requête pour le scroll infini
@@ -65,7 +66,8 @@ readThis = function(element,id,from,callback) {
                         if( console && console.log && msg!="" ) console.log(msg);
                         parent.removeClass('eventRead');
                         // on compte combien d'article ont été remis à non lus
-                        if ( (activeScreen=='') || (activeScreen=='selectedFolder') ) $(window).data('nblus', $(window).data('nblus')-1);
+                        if ((activeScreen=='') || (activeScreen=='selectedFolder')|| (activeScreen=='selectedFeedNonLu'))
+                            $(window).data('nblus', $(window).data('nblus')-1);
                         if(callback){ callback(); }
                     }
                 }
