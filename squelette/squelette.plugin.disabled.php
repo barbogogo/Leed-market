@@ -14,7 +14,7 @@ function squelette_plugin_menu(&$myUser){
 	
 	echo '<aside class="squeletteMenu">
 				
-				<h3 class="left">A lire</h3>
+				<h3 class="left">'._t('P_SQUELETTE_ALIRE').'</h3>
 					<ul class="clear">  							  								  							  							  								  	
 					<li>
 						<ul> 
