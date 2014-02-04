@@ -16,5 +16,6 @@ Instructions
 Version
 =======
 
+* v2.1.0  - internationalisation
 * v2.0.0  - liste des fichiers log disponibles.
 * v1.0.0  - Développement Initial

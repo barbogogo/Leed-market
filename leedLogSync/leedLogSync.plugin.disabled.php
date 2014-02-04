@@ -4,20 +4,20 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 2.0.0
+@version 2.1.0
 @description Le plugin permet l'affichage des logs de synchro du cron
 */
 
 
 // affichage d'un lien dans le menu "Gestion"
 function leedLogSync_plugin_AddLink(){
-	echo '<li><a class="toggle" href="#leedLogSync">Logs Synchro. Cron</a></li>';
+	echo '<li><a class="toggle" href="#leedLogSync">'._t('P_LOGSYNC_TITLE').'</a></li>';
 }
 
 // affichage des option de recherche et du formulaire
 function leedLogSync_plugin_AddForm(&$myUser){
 	echo '<section id="leedLogSync" name="leedLogSync" class="leedLogSync">
-			<h2>Logs dernière synchronisation</h2>';
+			<h2>'._t('P_LOGSYNC_TITLE2').'</h2>';
 	
 	$dir    = './logs';
 	
@@ -62,12 +62,12 @@ function leedLogSync_plugin_AddForm(&$myUser){
 	
 	if (!isset($fileLog)) { $fileLog = $dir.'/'.$myUser->getLogin().'.log'; }
 	if (isset($_POST['plugin_leedLogSync_file'])) {
-		echo 'Affichage du fichier : '.$fileLog;
+		echo _t('P_LOGSYNC_SHOW_FILE_TITLE', array($fileLog));
 	
 		if (file_exists($fileLog)){ 
 			print_r(file_get_contents($fileLog)); 
 		} else {
-			echo '<li>Aucun fichier de log présent. </li><li>Fichier attendu: '.$fileLog.'</li>';
+			echo _t('P_LOGSYNC_SHOW_FILE_ERR', array($fileLog));
 		}
 	}
 	echo '</section>';

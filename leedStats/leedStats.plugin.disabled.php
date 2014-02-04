@@ -4,12 +4,12 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 1.0.1
+@version 1.1.0
 @description Permet d'avoir des petites statistiques sur les flux de votre environnement Leed.
 */
 
 function leedStats_plugin_setting_link(&$myUser){
-	echo '<li><a class="toggle" href="#leedStatslBloc">Plugin Leed Stats</a></li>';
+	echo '<li><a class="toggle" href="#leedStatslBloc">'._t('P_LEEDSTATS_TITLE').'</a></li>';
 }
 
 function leedStats_plugin_setting_bloc(&$myUser){
@@ -18,10 +18,10 @@ function leedStats_plugin_setting_bloc(&$myUser){
 
     echo '
 	<section id="leedStatslBloc" class="leedStatslBloc" style="display:none;">
-		<h2>Plugin Leed Stats</h2>
+		<h2>'._t('P_LEEDSTATS_TITLE').'</h2>
 
 		<section class="preferenceBloc">
-		<h3>Résumé</h3>
+		<h3>'._t('P_LEEDSTATS_RESUME').'</h3>
 	';
 
     //Nombre global d'article lus / non lus / total / favoris
@@ -36,11 +36,11 @@ function leedStats_plugin_setting_bloc(&$myUser){
     if($query!=null){
         echo '<div id="result_leedStats1" class="result_leedStats1">
                  <table>
-                        <th class="leedStats_border leedStats_th">Nb. feed</th>
-                        <th class="leedStats_border leedStats_th">Nb. articles</th>
-                        <th class="leedStats_border leedStats_th">Nb. art. non lus</th>
-                        <th class="leedStats_border leedStats_th">Nb. art. lus</th>
-                        <th class="leedStats_border leedStats_th">Nb. favoris</th>
+                        <th class="leedStats_border leedStats_th">'._t('P_LEEDSTATS_NBFEED').'</th>
+                        <th class="leedStats_border leedStats_th">'._t('P_LEEDSTATS_NBART').'</th>
+                        <th class="leedStats_border leedStats_th">'._t('P_LEEDSTATS_NBART_NONLU').'</th>
+                        <th class="leedStats_border leedStats_th">'._t('P_LEEDSTATS_NBART_LU').'</th>
+                        <th class="leedStats_border leedStats_th">'._t('P_LEEDSTATS_NBFAV').'</th>
         ';
         while($data = mysql_fetch_array($query)){
             echo '
@@ -57,7 +57,7 @@ function leedStats_plugin_setting_bloc(&$myUser){
             </div>';
     }
 	echo '
-            <h3>Nb d\'article par flux RSS</h3>
+            <h3>'._t('P_LEEDSTATS_NBART_BY_FEED_TITLE').'</h3>
 
     ';
     //Nombre global d'article lus / non lus / total / favoris
@@ -74,11 +74,11 @@ function leedStats_plugin_setting_bloc(&$myUser){
     if($query!=null){
         echo '<div id="result_leedStats1" class="result_leedStats1">
                  <table>
-                        <th class="leedStats_border leedStats_th">Feed</th>
-                        <th class="leedStats_border leedStats_th">Nb. articles</th>
-                        <th class="leedStats_border leedStats_th">Nb. art. non lus</th>
-                        <th class="leedStats_border leedStats_th">Nb. art. lus</th>
-                        <th class="leedStats_border leedStats_th">Nb. favoris</th>
+                        <th class="leedStats_border leedStats_th">'._t('P_LEEDSTATS_FEED').'</th>
+                        <th class="leedStats_border leedStats_th">'._t('P_LEEDSTATS_NBART').'</th>
+                        <th class="leedStats_border leedStats_th">'._t('P_LEEDSTATS_NBART_NONLU').'</th>
+                        <th class="leedStats_border leedStats_th">'._t('P_LEEDSTATS_NBART_LU').'</th>
+                        <th class="leedStats_border leedStats_th">'._t('P_LEEDSTATS_NBFAV').'</th>
         ';
         while($data = mysql_fetch_array($query)){
             echo '
