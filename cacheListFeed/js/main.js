@@ -42,7 +42,8 @@ function cacheListFeed_init(cache) {
   	// affichage de la menu bar
     divmenubar.style.display = "block";
 	if (Elem_article.style.position!="fixed") { Elem_article.style.width="67%"; }
-    document.getElementById('cacheListFeed_divbut_return').parentNode.removeChild(document.getElementById('cacheListFeed_divbut_return'));
+    if (document.getElementById('cacheListFeed_divbut_return'))
+      document.getElementById('cacheListFeed_divbut_return').parentNode.removeChild(document.getElementById('cacheListFeed_divbut_return'));
   } else {
   	// cacher la menu bar
   	divmenubar.style.display = "none";
