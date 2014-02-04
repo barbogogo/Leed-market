@@ -1,0 +1,16 @@
+{
+ "P_SOCIAL_BTN_SAVE":"Save",
+ "P_SOCIAL_COMMENT_AUTHOR":"@Cobalt74 : If you want I integrate a new link to share applications, I remain available on <a href='https://github.com/ldleman/Leed-market/'>GitHub project</a>",
+ "P_SOCIAL_LINK":"Link to",
+ "P_SOCIAL_NO":"No",
+ "P_SOCIAL_PREF_TITLE":"Enabling sharing buttons",
+ "P_SOCIAL_SHAARLI_DESC":"PHP application sharing links (<a href='http://sebsauvage.net/wiki/doku.php?id=php:shaarli'>web site</a>)",
+ "P_SOCIAL_SHARE_APPLI":"Application parameters",
+ "P_SOCIAL_SHARE_BY":"Share by",
+ "P_SOCIAL_SHARE_MOINS":"- Share",
+ "P_SOCIAL_SHARE_ON":"Share on",
+ "P_SOCIAL_SHARE_PLUS":"+ Share",
+ "P_SOCIAL_TITLE":"Plugin Social",
+ "P_SOCIAL_WALLABAG_DESC":"Self-Hostable application to read articles later (<a href='http://www.wallabag.org/'>web site</a>)",
+ "P_SOCIAL_YES":"Yes"
+}

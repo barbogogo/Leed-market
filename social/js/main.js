@@ -10,10 +10,10 @@ function social_toggle_div(main, id) {
   if(div.style.display=="none") {
 	div.style.left=maindiv.parentNode.offsetLeft+3+'px';
     div.style.display = "block";
-    maindiv.innerHTML = "- Partager";
+    maindiv.innerHTML = _t('P_SOCIAL_SHARE_MOINS');
   } else {
     div.style.display = "none";
-    maindiv.innerHTML = "+ Partager";
+    maindiv.innerHTML = _t('P_SOCIAL_SHARE_PLUS');
   }
 }
 

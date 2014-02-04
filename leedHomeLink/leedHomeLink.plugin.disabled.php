@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 1.0.1
+@version 1.1.0
 @description Ce plugin permet d'ajouter un menu surgissant afin d'accéder directement à des liens externes (blog, applications)
 */
 

@@ -28,6 +28,7 @@ Instructions
 Version
 =======
 
+* v3.6.0  -  Internationalisation
 * v3.5.3  -  Sécurisation de l'administration
 * v3.5.2  -  Modification de Poche en Wallabag
 * v3.5.1  -  Fermeture du menu sur la selection d'un lien de partage
