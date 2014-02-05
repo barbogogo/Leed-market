@@ -14,7 +14,8 @@ Instructions
 Version
 =======
 
-* v2.0.1  -  ajout d'un controle (suite à une erreur dans la console js)
+* v2.1.1  -  Utilise la CSS dynamique pour choisir la largeur de l'affichage des articles quand le menu est affiché
+* v2.1.0  -  ajout d'un controle (suite à une erreur dans la console js)
 * v2.0.1  -  i18n + modif intégration sur Marigolds
 * v2.0.0  -  Enregistrement de la configuration caché / affiché
 * v1.1.0  -  Modification liée à la gestion des css sur Leed
