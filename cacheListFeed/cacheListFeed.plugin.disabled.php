@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 2.1.0
+@version 2.1.1
 @description Le plugin cacheListFeed permet de cacher la liste des feed afin de lire les news en plein écran.
 */
 
