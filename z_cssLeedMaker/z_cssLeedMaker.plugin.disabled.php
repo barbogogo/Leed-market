@@ -20,7 +20,7 @@ function zcssleedmaker_plugin_setting_bloc(&$myUser){
 	echo '
 	<section id="CSSLeedMaker" class="CSSLeedMaker" style="display:none;">
 		<form action="action.php?action=zcssleedmaker_update" method="POST">
-		<h2>'._t('P_CSSLEEDMAKER_TITLE').'r</h2>
+		<h2>'._t('P_CSSLEEDMAKER_TITLE').'</h2>
 
 		<section class="preferenceBloc">
 			<h3>'._t('P_CSSLEEDMAKER_DEFAULT_FILE').'</h3>
