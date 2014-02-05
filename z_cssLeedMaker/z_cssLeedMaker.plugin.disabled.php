@@ -4,12 +4,12 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 1.0.1
+@version 1.1.0
 @description Ce plugin permet de contruire son propre thème en ajoutant du css. 
 */
 
 function zcssleedmaker_plugin_setting_link(&$myUser){
-	echo '<li><a class="toggle" href="#CSSLeedMaker">Plugin CSS Leed Maker</a></li>';
+	echo '<li><a class="toggle" href="#CSSLeedMaker">'._t('P_CSSLEEDMAKER_TITLE').'</a></li>';
 }
 
 function zcssleedmaker_plugin_setting_bloc(&$myUser){
@@ -20,27 +20,29 @@ function zcssleedmaker_plugin_setting_bloc(&$myUser){
 	echo '
 	<section id="CSSLeedMaker" class="CSSLeedMaker" style="display:none;">
 		<form action="action.php?action=zcssleedmaker_update" method="POST">
-		<h2>Plugin CSS Leed Maker</h2>
+		<h2>'._t('P_CSSLEEDMAKER_TITLE').'r</h2>
 
 		<section class="preferenceBloc">
-			<h3>Selection d\'un fichier css par defaut</h3>
+			<h3>'._t('P_CSSLEEDMAKER_DEFAULT_FILE').'</h3>
 			<select name="plugin_cssLeedMaker_css" id="plugin_cssLeedMaker_css">
-				<option value="none">Aucun</option>';
+				<option value="none">'._t('P_CSSLEEDMAKER_NONE').'</option>';
 				foreach($filescss as $file){
-					if ($file==$filecss) {
-						echo '<option selected="selected" value="'.$file.'">'.$file.'</option>';
-					} else { 
-						echo '<option value="'.$file.'">'.$file.'</option>';
-					}
+                    if ($file!=".htaccess"&&$file!="@eadir"&&$file!=".DS_Store") {
+                        if ($file==$filecss) {
+                            echo '<option selected="selected" value="'.$file.'">'.$file.'</option>';
+                        } else {
+                            echo '<option value="'.$file.'">'.$file.'</option>';
+                        }
+                    }
 				}
 	echo '	</select>
-			<h3>Ajouter votre propre code CSS</h3>
+			<h3>'._t('P_CSSLEEDMAKER_ADD_CSS_PERSO').'</h3>
 			<textarea name="plugin_cssLeedMaker_addcss" rows=20 cols=40 wrap=physical>'.rawurldecode($configurationManager->get('plugin_cssLeedMaker_addcss')).'</textarea>
 		</section>
-		<input type="submit" class="button" value="Enregistrer">
+		<input type="submit" class="button" value="'._t('P_CSSLEEDMAKER_BTN_SAVE').'">
 		</form>
 		
-		<p>Envoyez moi vos fichiers css !</p>
+		<p>'._t('P_CSSLEEDMAKER_COMMENT_AUTHOR').'</p>
 	</section>
 	';
 }
