@@ -5,7 +5,10 @@ function cacheListFeed_toggle_div() {
   if(divmenubar.style.display=="none") {
   	// affichage de la menu bar
     divmenubar.style.display = "block";
-	if (Elem_article.style.position!="fixed") { Elem_article.style.width="67%"; }
+	if (Elem_article.style.position!="fixed") {
+		// On supprime la valeur pour utiliser celle de la CSS afin d'avoir un affichage dynamique
+		Elem_article.style.width="";
+	}
     document.getElementById('cacheListFeed_divbut_return').parentNode.removeChild(document.getElementById('cacheListFeed_divbut_return'));
     // Si l'utilisateur est connecté, on enregistre la position
 	$.ajax({
