@@ -23,3 +23,7 @@ Version
 * v2.0.0  - intégration de la mise à jour des plugins
 * v1.2.0  - correction droits fichiers + ajout contrôle
 * v1.1.0  - Développement Initial
+
+Auteur
+=======
+@Cobalt74 - cobalt74 at gmail dot com - www.cobestran.com

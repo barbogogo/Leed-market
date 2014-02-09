@@ -16,3 +16,7 @@ Version
 * v1.1.0  - Internationalisation
 * v1.0.1  - Sécurisation de l'administration
 * v1.0.0  - Développement Initial
+
+Auteur
+=======
+@Cobalt74 - cobalt74 at gmail dot com - www.cobestran.com

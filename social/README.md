@@ -42,3 +42,7 @@ Version
 * v2.3.0  -  MAJ pour affichage réduit sur Leed
 * v1.1.0  -  Gestion des css lié à la version Leed
 * v1.0.0  -  Développement Initial
+
+Auteur
+=======
+@Cobalt74 - cobalt74 at gmail dot com - www.cobestran.com
