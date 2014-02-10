@@ -1,8 +1,8 @@
 function adblock_whitelist_blacklist(id, whitelist_blacklist) {
     if(whitelist_blacklist == 0)
-        document.getElementById(id).innerHTML = "Whitelist :";
+        document.getElementById(id).innerHTML = _t('P_ADBLOCK_BLACKLIST');
     else
-        document.getElementById(id).innerHTML = "Blacklist :";
+        document.getElementById(id).innerHTML = _t('P_ADBLOCK_WHITELIST');
 }
 
 function adblock_unblock_img(span, url) {
