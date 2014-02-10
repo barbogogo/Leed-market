@@ -4,7 +4,7 @@
 @author Olivier <http://olivierlebris.me>
 @link http://cybride.net/olivier
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 2.0.0
+@version 2.1.0
 @description Used to cleanup url from some crap (xtor, utm_) and use url id of RSS feed for clean Feedbrner(feedproxy), feedsportal url
 */
 
@@ -18,8 +18,8 @@ function urlclean_plugin_link(&$events){
             $link = $event_load->getGuid();
         }
         $link = preg_replace("/[&#?]xtor=(.)+/", "", $link);
-        $link = preg_replace("/utm_[^&#]+&*/", "", $link);
-        $link = preg_replace("/\?&/", "", $link);        
+        $link = preg_replace("/utm_([^&#]|(&amp;))+&*/", "", $link);
+        $link = preg_replace("/\?&/", "", $link);
         if (isset($link[strlen($link) -1])){
             if ($link[strlen($link) -1] == '?')
                 $link = substr($link, 0, strlen($link) -1);
