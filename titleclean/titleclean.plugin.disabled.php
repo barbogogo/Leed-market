@@ -1,8 +1,8 @@
 <?php
 /*
 @name Title Clean
-@author Olivier <http://olivierlebris.me>
-@link http://cybride.net/olivier
+@author Olivier <http://j.cybride.net/olb>
+@link http://j.cybride.net/olb
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
 @version 1.0.0
 @description Used to cleanup title text just to keep textual information
