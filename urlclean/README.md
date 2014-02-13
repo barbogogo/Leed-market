@@ -14,12 +14,15 @@ Instructions
 Version
 =======
 
+* v2.1.3  -  Déport de cURL en 'dernier recourt'
+* v2.1.2  -  Prise en compte de flux.20minutes.fr
+* v2.1.1  -  Correction de la gestion de feedsportal
 * v2.1.0  -  Modification Regex (prise en compte des &amp;)
 * v2.0.0  -  Modification Regex + ajout clean feedproxy + feedsportal
 * v1.0.0  -  Développement Initial
 
 Auteur
 =======
-@kraoc - http://olivierlebris.me
+@kraoc - http://j.cybride.net/olb
 
 Contributeur : @Cobalt74 - cobalt74 at gmail dot com - www.cobestran.com
