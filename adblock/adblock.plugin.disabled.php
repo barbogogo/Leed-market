@@ -202,7 +202,7 @@ function adblock_plugin_setting_bloc(&$myUser) {
                                     <input type="radio" name="flash_adblock_default_behavior" value="0" id="flash_adblock_allowall" onchange="adblock_whitelist_blacklist(\'adblock_flash_whitelist_blacklist\', 0);" '.((!$flash_block) ? 'checked="checked"' : '').'/><label for="flash_adblock_allowall">'._t('P_ADBLOCK_DEFAULT_BEHAVIOR_ALLOW').'</label>
                                 </p>
 
-                                <p><span id="adblock_flash_whitelist_blacklist">'.(($flash_block) ? _t('P_ADBLOCK_WHITELIST') : _t('P_ADBLOCK_BLACKLIST')).'</span></br>
+                                <p><span id="adblock_flash_whitelist_blacklist">'.(($flash_block) ? _t('P_ADBLOCK_WHITELIST') : _t('P_ADBLOCK_BLACKLIST')).'</span></p>
                                 <textarea name="flash_adblock_list" rows="7">'.$flash_list.'</textarea>
                             </div>
                         </fieldset>
@@ -226,7 +226,7 @@ function adblock_plugin_setting_bloc(&$myUser) {
                                     <input type="radio" name="img_adblock_only_mobiles" value="0" id="img_adblock_only_mobiles_no" '.((!$img_only_mobiles) ? 'checked="checked"' : '').'/><label for="img_adblock_only_mobiles_no">'._t('P_ADBLOCK_OPT_IMAGES_BLOCK_ALL').'</label>
                                 </p>
 
-                                <p><span id="adblock_img_whitelist_blacklist">'.(($img_block) ? _t('P_ADBLOCK_WHITELIST') : _t('P_ADBLOCK_BLACKLIST')).'</span></br>
+                                <p><span id="adblock_img_whitelist_blacklist">'.(($img_block) ? _t('P_ADBLOCK_WHITELIST') : _t('P_ADBLOCK_BLACKLIST')).'</span></p>
                                 <textarea name="img_adblock_list" rows="7">'.$img_list.'</textarea>
                             </div>
                         </fieldset>
