@@ -4,7 +4,7 @@
 @author Forty-Six <Forty-Six>
 @link https://github.com/Forty-Six
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 0.4
+@version 0.4.1
 @description Ce plugin ajoute un bouton à coté du titre de chaque événement pour en afficher ou non le contenu
 */
 
@@ -13,7 +13,7 @@ function FS_toggleEventContent_AddButton(&$event) {
 
 	$toggle = FS_toggleEventContent_getDefault();
 
-	echo '<div onClick="FS_toggleEventContent(this);" class="pointer FS_toggleEventContent_Button" alt="Toggle the content" title="Toggle the content">Toggle '.(($toggle == 1) ? 'on' : 'off').'</div>';
+	echo '<div onClick="FS_toggleEventContent(this);" class="pointer FS_toggleEventContent_Button button" alt="Toggle the content" title="Toggle the content">Toggle '.(($toggle == 1) ? 'on' : 'off').'</div>';
 }
 
 // Fonction d'ajout d'un lien dans le menu de gestion
@@ -52,8 +52,8 @@ function toggleEventContent_Update($_) {
 		$config->put('toggleEventContent_default',$_['toggleEventContent_default']);
 		$_SESSION['configuration'] = null;
 
-//		header('location: settings.php#toggleEventContent');
-		header('location: /');
+		header('location: settings.php#toggleEventContent');
+//		header('location: /');
 	}
 }
 
@@ -61,8 +61,10 @@ function toggleEventContent_Update($_) {
 function FS_toggleEventContent_PreTest() {
 	
 	$toggle = FS_toggleEventContent_getDefault();
-	
-	if ($toggle == 1) Plugin::addCss('/css/toggle-event-content.css');
+/*	
+	if ($toggle == 1)
+        Plugin::addCss('/css/ToggleEventContent_plugin_css.css');
+*/
 }
 
 // Lecture de l'option par défaut
@@ -97,8 +99,8 @@ Plugin::addHook("setting_post_section","FS_toggleEventContent_SettingForm");
 Plugin::addHook("action_post_case", "toggleEventContent_Update"); 
 
 // Execution du choix : insertion ou non du CSS
-Plugin::addHook("index_pre_treatment","FS_toggleEventContent_PreTest");
+//Plugin::addHook("index_pre_treatment","FS_toggleEventContent_PreTest");
+Plugin::addCss('/css/ToggleEventContent_plugin_css.css');
 
 // Insertion du javascript
-Plugin::addJs("/js/main.js");
-
+Plugin::addJs("/js/ToggleEventContent_plugin_js.js");
