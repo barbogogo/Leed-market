@@ -14,3 +14,12 @@ Compatibilité
 
 **ToggleEventContent** est compatible avec les thèmes suivants :
 * [Marigolds](http://projet.idleman.fr/leed/data/themes/marigolds.zip) proposé par Idleman
+
+Mises à jour
+=============
+Modifications apportés par:
+@kraoc - http://j.cybride.net/olb
+
+* Permet de rendre compatible avec le thème Marigolds sans modifier les couleurs des boutons
+* Compatiblité du module avec le dernier commit en développement
+* Redirection sur le plugin lors de l'enregistrement des paramètres
