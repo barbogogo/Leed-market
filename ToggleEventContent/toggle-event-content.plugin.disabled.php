@@ -4,7 +4,7 @@
 @author Forty-Six <Forty-Six>
 @link https://github.com/Forty-Six
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 0.4.1
+@version 0.4.2
 @description Ce plugin ajoute un bouton à coté du titre de chaque événement pour en afficher ou non le contenu
 */
 
@@ -53,18 +53,7 @@ function toggleEventContent_Update($_) {
 		$_SESSION['configuration'] = null;
 
 		header('location: settings.php#toggleEventContent');
-//		header('location: /');
 	}
-}
-
-// Fonction de test d'affichage par défaut du contenu
-function FS_toggleEventContent_PreTest() {
-	
-	$toggle = FS_toggleEventContent_getDefault();
-/*	
-	if ($toggle == 1)
-        Plugin::addCss('/css/ToggleEventContent_plugin_css.css');
-*/
 }
 
 // Lecture de l'option par défaut
@@ -99,8 +88,8 @@ Plugin::addHook("setting_post_section","FS_toggleEventContent_SettingForm");
 Plugin::addHook("action_post_case", "toggleEventContent_Update"); 
 
 // Execution du choix : insertion ou non du CSS
-//Plugin::addHook("index_pre_treatment","FS_toggleEventContent_PreTest");
-Plugin::addCss('/css/ToggleEventContent_plugin_css.css');
+$toggle = FS_toggleEventContent_getDefault();
+if ($toggle == 1) Plugin::addCss('/css/ToggleEventContent_plugin_css.css');
 
 // Insertion du javascript
 Plugin::addJs("/js/ToggleEventContent_plugin_js.js");
