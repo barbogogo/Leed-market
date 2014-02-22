@@ -1,3 +1,4 @@
+ToggleEventContent
 ==================
 
 **ToggleEventContent** est un _Plugin_ pour [Leed](http://projet.idleman.fr/leed), un agrégateur libre de flux RSS, compatible avec le format OPML. Il ajoute un bouton à côté du titre de chaque événement pour permettre d'en **cacher** / **afficher** le contenu.
