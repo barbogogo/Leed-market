@@ -4,13 +4,13 @@
 @author Olivier <http://j.cybride.net/olb>
 @link http://j.cybride.net/olb
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 2.2.1
+@version 2.2.2
 @description Used to cleanup url from some crap (xtor, utm_) and use url id of RSS feed for clean Feedbrner(feedproxy), feedsportal url
 */
 
 // validate url format to prevent entries like this "249742 at http://rue89.nouvelobs.com"
 function validurl($link) {
-    if(filter_var($link, FILTER_VALIDATE_URL, FILTER_FLAG_QUERY_REQUIRED)) return $link;
+    if(filter_var($link, FILTER_VALIDATE_URL)) return $link;
     else return null;
 }
 
@@ -30,7 +30,7 @@ function urlclean_plugin_link(&$events){
             $link_search = $event_load->getGuid();
             preg_match("#tag:([a-zA-Z.]+),[0-9a-zA-Z-]+:([0-9a-zA-Z&?=./-]+)#", $link_search, $matches);
             if (isset($matches[0])) {
-                $link_search = $matches[1].$matches[2];
+                $link_search = 'http://'.$matches[1].'/'.$matches[2];
             }
             //001 - fin
             $link = validurl( $link_search ); // get article guid as link (and check its format validity)
