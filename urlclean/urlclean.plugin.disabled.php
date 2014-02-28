@@ -4,7 +4,7 @@
 @author Olivier <http://j.cybride.net/olb>
 @link http://j.cybride.net/olb
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 2.1.3
+@version 2.2.0
 @description Used to cleanup url from some crap (xtor, utm_) and use url id of RSS feed for clean Feedbrner(feedproxy), feedsportal url
 */
 
@@ -26,7 +26,14 @@ function urlclean_plugin_link(&$events){
         {
             $events_load = new Event();
             $event_load = $events_load->load(array('id'=>$event->getid())); // load full event
-            $link = validurl( $event_load->getGuid() ); // get article guid as link (and check its format validity)
+            //001 - feedproxy - recherche d'une url à reconstituer du type tag:site.org,2013-05-18:finurl
+            $link_search = $event_load->getGuid();
+            preg_match("#tag:([a-zA-Z.]+),[0-9a-zA-Z-]+:([0-9a-zA-Z./]+)#", $link_search, $matches);
+            if (isset($matches[0])) {
+                $link_search = $matches[1].$matches[2];
+            }
+            //001 - fin
+            $link = validurl( $link_search ); // get article guid as link (and check its format validity)
         }
 
         // fallback to crawl to real url (slowest method and unsecure to privacy)

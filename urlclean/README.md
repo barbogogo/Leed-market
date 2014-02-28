@@ -14,6 +14,7 @@ Instructions
 Version
 =======
 
+* v2.2.0  -  Prise en charge des flux feedproxy du type "tag:site,date:fin/url"
 * v2.1.3  -  Déport de cURL en 'dernier recourt'
 * v2.1.2  -  Prise en compte de flux.20minutes.fr
 * v2.1.1  -  Correction de la gestion de feedsportal
