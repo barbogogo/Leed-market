@@ -4,7 +4,7 @@
 @author qwerty <qwerty@legtux.org>
 @link http://etudiant-libre.fr.nf
 @licence Tea Licence
-@version 1.0.0
+@version 1.0.1
 @description Vide le cache
 */
 
@@ -47,26 +47,25 @@ function clear_folder($folder, $skip_files=array()){
 
 
 function delcache_plugin_setting_link(&$feed){
-echo '<a class="pointer" href="action.php?action=delcache" alt="Synchroniser" title="Vider le cache">Vider le cache</a> ';
+    echo '<a class="pointer" href="action.php?action=delcache" alt="Vider le cache de Leed" title="Vider le cache">Vider le cache</a>';
 }
 
 function delcache_plugin_action(&$_){
-if ($_['action']=='delcache'){
-$myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
-if($myUser==false) exit('Vous devez vous connecter pour cette action.');
-    clear_folder("cache/");
-header('location: ./index.php');
-echo "<script>alert('le cache a �t� vid�');</script>";
+    if ($_['action']=='delcache'){
+        $myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
+
+        if($myUser==false) exit('Vous devez vous connecter pour cette action.');
+
+        clear_folder("cache/");
+        echo "<script type='text/javascript'>
+                    if (window.confirm('Le cache a été vidé')) {
+                        window.location.href='index.php';
+                    }
+              </script>";
+
+    }
 }
 
-}
-// Ajout du css du squelette en en t�te de leed
-//Plugin::addCss("/css/style.css"); 
-
-// Ajout du javascript du squelette au bas de page de leed
-//Plugin::addJs("/js/main.js"); 
- 
-// Ajout de la fonction squelette_plugin_action � la page action de leed qui contient tous les traitements qui n'ont pas besoin d'affichage (ex :supprimer un flux, faire un appel ajax etc...)
-Plugin::addHook('setting_post_link', 'delcache_plugin_setting_link'); 
+Plugin::addHook('setting_post_link', 'delcache_plugin_setting_link');
 Plugin::addHook("action_post_case", "delcache_plugin_action"); 
 ?>
