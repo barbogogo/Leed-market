@@ -30,7 +30,7 @@ function urlclean_plugin_link(&$events){
         }
 
         // fallback to crawl to real url (slowest method and unsecure to privacy)
-        if ($link == null && function_exists('curl_init')) {
+        if ($link == null && function_exists('curl_init') && !ini_get('safe_mode')) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $event->getLink());
             curl_setopt($ch, CURLOPT_HEADER, true);
